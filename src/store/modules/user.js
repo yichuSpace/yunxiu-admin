@@ -1,4 +1,5 @@
 import { login, getUserInfo } from '@/api/sys'
+import { setTimeStamp } from '@/utils/auth'
 import md5 from 'md5'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
@@ -28,6 +29,7 @@ export default {
         })
           .then((data) => {
             this.commit('user/setToken', data.token)
+            setTimeStamp()
             resolve()
           })
           .catch((err) => {
