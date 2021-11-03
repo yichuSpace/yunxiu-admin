@@ -7,7 +7,7 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -43,29 +43,33 @@
         @click="handleLogin"
         type="primary"
         style="width: 100%; margin-bottom: 30px"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
 
 <script setup>
-// 导入组件之后无需注册可直接使用
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+
 // 数据源
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
+// 验证规则
+const i18n = useI18n()
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: 'msg.login.usernameRule'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
   password: [

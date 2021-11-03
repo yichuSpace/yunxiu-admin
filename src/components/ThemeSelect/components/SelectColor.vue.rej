@@ -1,0 +1,4 @@
+diff a/src/components/ThemeSelect/components/SelectColor.vue b/src/components/ThemeSelect/components/SelectColor.vue	(rejected hunks)
+@@ -7 +7 @@ export default {
+-name: "SelectColor"
++  name: 'SelectColor'

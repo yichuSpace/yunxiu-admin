@@ -1,0 +1,4 @@
+diff a/src/components/ThemeSelect/index.vue b/src/components/ThemeSelect/index.vue	(rejected hunks)
+@@ -7 +7 @@ export default {
+-name: "index.vue"
++  name: 'index.vue'

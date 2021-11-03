@@ -1,13 +1,18 @@
 <template>
   <!-- 一级 menu 菜单 -->
-  <el-menu :default-active="activeMenu" :unique-opened="true" router>
+  <el-menu
+    :default-active='activeMenu'
+    :collapse='!$store.getters.sidebarOpened'
+    :background-color='$store.getters.cssVar.menuBg'
+    :text-color='$store.getters.cssVar.menuText'
+    :active-text-color='$store.getters.cssVar.menuActiveText'
+    :unique-opened='true'
+    router
+  >
     <sidebar-item
-      :background-color="$store.getters.cssVar.menuBg"
-      :text-color="$store.getters.cssVar.menuText"
-      :active-text-color="$store.getters.cssVar.menuActiveText"
-      v-for="item in routes"
-      :key="item.path"
-      :route="item"
+      v-for='item in routes'
+      :key='item.path'
+      :route='item'
     ></sidebar-item>
   </el-menu>
 </template>
@@ -24,11 +29,14 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
-
+console.log(routes)
 // 计算高亮 menu 的方法
 const route = useRoute()
 const activeMenu = computed(() => {
-  const { meta, path } = route
+  const {
+    meta,
+    path
+  } = route
   if (meta.activeMenu) {
     return meta.activeMenu
   }
@@ -36,4 +44,4 @@ const activeMenu = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang='scss' scoped></style>
