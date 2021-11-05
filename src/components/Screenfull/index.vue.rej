@@ -1,4 +1,0 @@
-diff a/src/components/Screenfull/index.vue b/src/components/Screenfull/index.vue	(rejected hunks)
-@@ -7 +7 @@ export default {
--name: "index"
-+  name: 'index'
