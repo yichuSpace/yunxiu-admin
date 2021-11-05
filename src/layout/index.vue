@@ -1,18 +1,20 @@
 <template>
   <div
-    class='app-wrapper'
+    class="app-wrapper"
     :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
   >
     <!-- 左侧 menu -->
     <sidebar
-      id='guide-sidebar'
-      class='sidebar-container'
-      :style='{ backgroundColor: $store.getters.cssVar.menuBg }'
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     />
-    <div class='main-container'>
-      <div class='fixed-header'>
+    <div class="main-container">
+      <div class="fixed-header">
         <!-- 顶部的 navbar -->
         <navbar />
+        <!-- tags -->
+        <tags-view></tags-view>
       </div>
       <!-- 内容区 -->
       <app-main />
@@ -24,9 +26,10 @@
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import TagsView from '@/components/TagsView/index.vue'
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import '~@/styles/mixin.scss';
 @import '~@/styles/variables.scss';
 

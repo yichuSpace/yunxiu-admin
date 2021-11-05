@@ -1,29 +1,30 @@
 <template>
-  <div class='navbar'>
-    <hamburger class='hamburger-container' />
-    <breadcrumb class='breadcrumb-container' />
-    <div class='right-menu'>
-      <screenfull class='right-menu-item hover-effect' />
-      <theme-picker class='right-menu-item hover-effect'></theme-picker>
-      <lang-select class='right-menu-item hover-effect' />
+  <div class="navbar">
+    <hamburger class="hamburger-container" />
+    <breadcrumb class="breadcrumb-container" />
+    <div class="right-menu">
+      <header-search class="right-menu-item hover-effect"></header-search>
+      <screenfull class="right-menu-item hover-effect" />
+      <theme-picker class="right-menu-item hover-effect"></theme-picker>
+      <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
-      <el-dropdown class='avatar-container' trigger='click'>
-        <div class='avatar-wrapper'>
+      <el-dropdown class="avatar-container" trigger="click">
+        <div class="avatar-wrapper">
           <el-avatar
-            shape='square'
-            :size='20'
-            :src='$store.getters.userInfo.avatar'
+            shape="square"
+            :size="20"
+            :src="$store.getters.userInfo.avatar"
           ></el-avatar>
           <el-icon>
             <setting />
           </el-icon>
         </div>
         <template #dropdown>
-          <el-dropdown-menu class='user-dropdown'>
-            <router-link to='/'>
+          <el-dropdown-menu class="user-dropdown">
+            <router-link to="/">
               <el-dropdown-item> {{ $t('msg.navBar.home') }}</el-dropdown-item>
             </router-link>
-            <el-dropdown-item divided @click='handleLogout'>
+            <el-dropdown-item divided @click="handleLogout">
               {{ $t('msg.navBar.logout') }}
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -40,7 +41,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
-
+import HeaderSearch from '@/components/HeaderSearch'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -49,7 +50,7 @@ const handleLogout = () => {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .navbar {
   height: 50px;
   overflow: hidden;
