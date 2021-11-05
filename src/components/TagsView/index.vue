@@ -1,28 +1,38 @@
 <template>
   <div class="tags-view-container">
-    <router-link
-      class="tags-view-item"
-      :class="isActive(tag) ? 'active' : ''"
-      :style="{
-        backgroundColor: isActive(tag) ? $store.getters.cssVar.menuBg : '',
-        borderColor: isActive(tag) ? $store.getters.cssVar.menuBg : ''
-      }"
-      v-for="(tag, index) in $store.getters.tagsViewList"
-      :key="tag.fullPath"
-      :to="{ path: tag.fullPath }"
-    >
-      {{ tag.title }}
-      <i
-        v-show="!isActive(tag)"
-        class="el-icon-close"
-        @click.prevent.stop="onCloseClick(index)"
-      />
-    </router-link>
+    <el-scrollbar class="tags-view-wrapper">
+      <router-link
+        class="tags-view-item"
+        @contextmenu.prevent="openMenu($event, index)"
+        :class="isActive(tag) ? 'active' : ''"
+        :style="{
+          backgroundColor: isActive(tag) ? $store.getters.cssVar.menuBg : '',
+          borderColor: isActive(tag) ? $store.getters.cssVar.menuBg : ''
+        }"
+        v-for="(tag, index) in $store.getters.tagsViewList"
+        :key="tag.fullPath"
+        :to="{ path: tag.fullPath }"
+      >
+        {{ tag.title }}
+        <i
+          v-show="!isActive(tag)"
+          class="el-icon-close"
+          @click.prevent.stop="onCloseClick(index)"
+        />
+      </router-link>
+    </el-scrollbar>
+    <context-menu
+      v-show="visible"
+      :style="menuStyle"
+      :index="selectIndex"
+    ></context-menu>
   </div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router'
+import { ref, reactive, watch } from 'vue'
+import ContextMenu from './ContextMenu.vue'
 const route = useRoute()
 
 /**
@@ -36,6 +46,40 @@ const isActive = (tag) => {
  * 关闭 tag 的点击事件
  */
 const onCloseClick = (index) => {}
+// contextMenu 相关
+const selectIndex = ref(0)
+const visible = ref(false)
+const menuStyle = reactive({
+  left: 0,
+  top: 0
+})
+/**
+ * 展示 menu
+ */
+const openMenu = (e, index) => {
+  const { x, y } = e
+  menuStyle.left = x + 'px'
+  menuStyle.top = y + 'px'
+  selectIndex.value = index
+  visible.value = true
+}
+/**
+ * 关闭 menu
+ */
+const closeMenu = () => {
+  visible.value = false
+}
+
+/**
+ * 监听变化
+ */
+watch(visible, (val) => {
+  if (val) {
+    document.body.addEventListener('click', closeMenu)
+  } else {
+    document.body.removeEventListener('click', closeMenu)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
