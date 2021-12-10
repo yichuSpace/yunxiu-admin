@@ -1,15 +1,16 @@
 import { createStore } from 'vuex'
-import user from './modules/user.js'
-import app from './modules/app.js'
-import theme from './modules/theme.js'
 
 import getters from './getters'
+const files = require.context('./modules', false, /\.js$/)
+const modules = {}
 
+files.keys().forEach((key) => {
+  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+})
+Object.keys(modules).forEach((key) => {
+  modules[key].namespaced = true
+})
 export default createStore({
-  modules: {
-    user,
-    app,
-    theme
-  },
+  modules,
   getters
 })

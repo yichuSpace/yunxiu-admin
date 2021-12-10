@@ -76,6 +76,11 @@
       </el-pagination>
     </el-card>
     <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
+    <roles-dialog
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+      @updateRole="getListData"
+    ></roles-dialog>
   </div>
 </template>
 
@@ -83,9 +88,11 @@
 import { ref, onActivated, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ExportToExcel from './components/Export2Excel'
+import RolesDialog from './components/roles'
 import { getUserManageList, deleteUser } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ElMessageBox, ElMessage } from 'element-plus'
+
 import { useI18n } from 'vue-i18n'
 // 数据相关
 const tableData = ref([])
