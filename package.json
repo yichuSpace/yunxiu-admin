@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:pro": "vue-tsc --noEmit && vite build --mode production",
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "commit": "git-cz",
     "preview": "vite preview"
@@ -14,8 +15,10 @@
     "@typescript-eslint/parser": "^5.20.0",
     "@vueuse/core": "^8.3.1",
     "axios": "^0.26.1",
+    "element-plus": "^2.1.11",
     "eslint": "^8.14.0",
     "eslint-plugin-vue": "^8.7.1",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"
@@ -23,16 +26,19 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "commitizen": "^4.2.4",
     "commitlint-config-cz": "^0.13.3",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
+    "dart-sass": "^1.25.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.0",
     "sass": "^1.50.1",
     "typescript": "^4.5.4",
     "vite": "^2.9.5",
+    "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^0.34.7"
   },
   "config": {
