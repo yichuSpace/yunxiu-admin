@@ -1,6 +1,8 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-const service = axios.create();
+const service = axios.create({
+  baseURL: 'https://shop.fed.lagou.com/api/admin' // 基础路径
+});
 
 // Request interceptors
 service.interceptors.request.use(
